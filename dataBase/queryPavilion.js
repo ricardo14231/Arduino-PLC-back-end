@@ -65,8 +65,9 @@ function updatePavilion(req, res) {
     return new Promise((resolve, reject) => {
         dataBase.connection
             .query('UPDATE tb_pavilion ' +
-                    'SET name_pavilion = "'+ req.body.name_pavilion + '", amount_room_pavilion = '+ req.body.amount_room_pavilion + 
-                    ', active_pavilion = '+ req.body.active_pavilion +', deleted_pavilion = '+ req.body.deleted_pavilion + ' WHERE id_pavilion = ' + req.params.id_pavilion + ' ', 
+                    ' SET name_pavilion = "'+ req.body.name_pavilion + '", amount_room_pavilion = '+ req.body.amount_room_pavilion +' , active_pavilion = '+ req.body.active_pavilion +
+                    ' , update_pavilion = CURRENT_TIMESTAMP() ' + 
+                    ' WHERE id_pavilion = ' + req.body.id_pavilion + ' ', 
                     (error, result, fields) => {
             if(error) 
                 reject(error);
@@ -79,7 +80,8 @@ function deletePavilion(req, res) {
     
     return new Promise((resolve, reject) => {
         dataBase.connection
-            .query('UPDATE tb_pavilion SET deleted_pavilion = 1 WHERE id_pavilion = ' + req.params.id_pavilion + '', (error, result, fields) => {
+            .query('UPDATE tb_pavilion SET deleted_pavilion = 1 WHERE id_pavilion = ' + req.params.id_pavilion + '', 
+            (error, result, fields) => {
             if(error) 
                 reject(error);
             resolve(result);

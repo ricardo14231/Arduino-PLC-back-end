@@ -1,14 +1,14 @@
  module.exports = app => {
 
     const roomController = {
-        listRoom: async (req, res) => {
+        listAllRoom: async (req, res) => {
             try {
-                const result = await app.dataBase.queryRoom.listRoom(req, res);
+                const result = await app.dataBase.queryRoom.listAllRoom(req, res);
 
                 return res.status(200).send(result);
 
             } catch (error) {
-                return res.status(401).send("Erro no list Room: " + error);        
+                return res.status(401).send("Erro no listAllRoom: " + error);        
             }
         },
         readRoomById: async (req, res) => {
@@ -31,6 +31,16 @@
                 return res.status(401).send("Erro no readRoomByIdPavilion: " + error);        
             }
         },
+        readCrudRoomByIdPavilion: async (req, res) => {
+            try {
+                const result = await app.dataBase.queryRoom.readCrudRoomByIdPavilion(req, res);
+
+                return res.status(200).send(result);
+
+            } catch (error) {
+                return res.status(401).send("Erro no readCrudRoomByIdPavilion: " + error);        
+            }
+        },
         createRoom: async (req, res) => {
             try {
                 const result = await app.dataBase.queryRoom.createRoom(req, res);
@@ -39,7 +49,7 @@
 
             } catch (error) {
                 return res.status(401).send("Erro no createRoom: " + error);        
-            }
+            } 
         },
         updateRoom: async (req, res) => {
             try {
