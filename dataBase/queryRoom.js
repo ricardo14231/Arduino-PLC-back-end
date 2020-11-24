@@ -15,6 +15,21 @@ function listAllRoom(req, res) {
     });
 }
 
+function listActiveRoom(req, res){
+    return new Promise((resolve, reject) => {
+        dataBase.connection.
+        query(
+            'SELECT id_room, name_room ' +
+            'FROM tb_room ' +
+            'WHERE active_room = 1 AND deleted_room = 0',
+        (error, result, fields) => {
+            if(error)
+                reject(error)
+            resolve(result);
+        });
+    });
+}
+
 function readRoomById(req, res) {
     return new Promise((resolve, reject) => {
         dataBase.connection.query("", (error, result, fields) => {
@@ -56,7 +71,7 @@ function readCrudRoomByIdPavilion(req, res) {
 }
 
 function createRoom(req, res) {
-    
+  
     return new Promise((resolve, reject) => {
         dataBase.connection.
         beginTransaction((error) => {
@@ -66,7 +81,7 @@ function createRoom(req, res) {
            
             dataBase.connection.
             query('INSERT INTO tb_room (fk_id_pavilion, fk_id_air, name_room, active_room, deleted_room, update_room, create_room) ' + 
-            'VALUES ('+ req.body.fk_id_pavilion +', '+ req.body.fk_id_air +', "'+ req.body.name_room +'", '+ req.body.active_room + ' ' +
+            'VALUES ('+ req.body.fk_id_pavilion +', '+ req.body.fk_id_new_air +', "'+ req.body.name_room +'", '+ req.body.active_room + ' ' +
                     ', false ,CURRENT_TIMESTAMP(), CURRENT_TIMESTAMP()); ', 
                 (error, result, fields) => {
                 if(error){
@@ -76,7 +91,7 @@ function createRoom(req, res) {
                 }
                 
                 dataBase.connection.
-                query('UPDATE tb_air SET allocated_air = true WHERE id_air = ' + req.body.fk_id_air + '', 
+                query('UPDATE tb_air SET allocated_air = true WHERE id_air = ' + req.body.fk_id_new_air + '', 
                     (error, result, fields) => {
                     if(error){
                         dataBase.connection.rollback(() =>{
@@ -178,4 +193,4 @@ function deleteRoom(req, res) {
     });
 }
 
-module.exports = { listAllRoom, readRoomById, readRoomByIdPavilion, readCrudRoomByIdPavilion, createRoom, updateRoom, deleteRoom };
+module.exports = { listAllRoom, listActiveRoom, readRoomById, readRoomByIdPavilion, readCrudRoomByIdPavilion, createRoom, updateRoom, deleteRoom };

@@ -11,6 +11,16 @@
                 return res.status(401).send("Erro no listAllRoom: " + error);        
             }
         },
+        listActiveRoom: async (req, res) => {
+            try {
+                const result = await app.dataBase.queryRoom.listActiveRoom(req, res);
+                
+                return res.status(200).send(result); 
+
+            } catch (error) {
+                return res.status(401).send("Erro no listActiveRoom: " + error);
+            }
+        },
         readRoomById: async (req, res) => {
             try {
                 const result = await app.dataBase.queryRoom.readRoomById(req, res);

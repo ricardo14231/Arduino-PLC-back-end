@@ -3,6 +3,7 @@ module.exports = app => {
     const roomController = app.controllers.roomController;
     
     app.get("/listAllRoom", roomController.listAllRoom);
+    app.get("/listActiveRoom", roomController.listActiveRoom);
     app.get("/readRoomById/:id_room", roomController.readRoomById);
     app.get("/readRoomByIdPavilion/:id_pavilion", roomController.readRoomByIdPavilion);
     app.get("/readCrudRoomByIdPavilion/:id_pavilion", roomController.readCrudRoomByIdPavilion);
