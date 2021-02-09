@@ -1,17 +1,15 @@
 module.exports = app => {
+  const scheduleController = {
+    listSchedule: async (req, res) => {
+      try {
+        const result = await app.dataBase.querySchedule.listSchedule(req, res)
 
-    const scheduleController = {
-        listSchedule: async (req, res) => {
-            try {
-                const result = await app.dataBase.querySchedule.listSchedule(req, res);
-
-                return res.status(200).send(result);
-
-            } catch (error) {
-                return res.status(401).send("Erro no list schedule: " + error);        
-            }
-        },
-        /*
+        return res.status(200).send(result)
+      } catch (error) {
+        return res.status(401).send('Erro no list schedule: ' + error)
+      }
+    }
+    /*
         readRoomById: async (req, res) => {
             try {
                 const result = await app.dataBase.queryRoom.readRoomById(req, res);
@@ -19,7 +17,7 @@ module.exports = app => {
                 return res.status(200).send(result);
 
             } catch (error) {
-                return res.status(401).send("Erro no readRoomById: " + error);        
+                return res.status(401).send("Erro no readRoomById: " + error);
             }
         },
         readRoomByIdPavilion: async (req, res) => {
@@ -29,7 +27,7 @@ module.exports = app => {
                 return res.status(200).send(result);
 
             } catch (error) {
-                return res.status(401).send("Erro no readRoomByIdPavilion: " + error);        
+                return res.status(401).send("Erro no readRoomByIdPavilion: " + error);
             }
         },
         createRoom: async (req, res) => {
@@ -39,7 +37,7 @@ module.exports = app => {
                 return res.status(201).send(result);
 
             } catch (error) {
-                return res.status(401).send("Erro no createRoom: " + error);        
+                return res.status(401).send("Erro no createRoom: " + error);
             }
         },
         updateRoom: async (req, res) => {
@@ -49,7 +47,7 @@ module.exports = app => {
                 return res.status(200).send(result);
 
             } catch (error) {
-                return res.status(401).send("Erro no updateRoom: " + error);        
+                return res.status(401).send("Erro no updateRoom: " + error);
             }
         },
         deleteRoom: async (req, res) => {
@@ -59,11 +57,11 @@ module.exports = app => {
                 return res.status(200).send(result);
 
             } catch (error) {
-                return res.status(401).send("Erro no deleteRoom: " + error);        
+                return res.status(401).send("Erro no deleteRoom: " + error);
             }
         },
         */
-    }
+  }
 
-    return scheduleController;
- }
+  return scheduleController
+}

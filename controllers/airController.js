@@ -1,78 +1,74 @@
-const queryAir = require("../dataBase/queryAir");
-
 module.exports = app => {
+  const airController = {
+    listUnallocatedActiveAir: async (req, res) => {
+      try {
+        const result = await app.dataBase.queryAir.listUnallocatedActiveAir(req, res)
 
-    const airController = {
-        listUnallocatedActiveAir: async (req, res) => {
-            try {
-                const result = await app.dataBase.queryAir.listUnallocatedActiveAir(req, res);
+        return res.status(200).send(result)
+      } catch (error) {
+        return res.status(401).send('Erro no listUnallocatedActiveAir: ' + error)
+      }
+    },
 
-                return res.status(200).send(result);
-            } catch (error) {
-                return res.status(401).send('Erro no listUnallocatedActiveAir: ' + error);
-            }
-        },
+    listAllocatedAirByIdPavilion: async (req, res) => {
+      try {
+        const result = await app.dataBase.queryAir.listAllocatedAirByIdPavilion(req, res)
 
-        listAllocatedAirByIdPavilion: async (req, res) => {
-            try {
-                const result = await app.dataBase.queryAir.listAllocatedAirByIdPavilion(req, res);
+        return res.status(200).send(result)
+      } catch (error) {
+        return res.status(401).send('Erro no listAllocatedAirByIdPavilion: ' + error)
+      }
+    },
 
-                return res.status(200).send(result);
-            } catch (error) {
-                return res.status(401).send('Erro no listAllocatedAirByIdPavilion: ' + error);
-            }
-        },
+    listAllAir: async (req, res) => {
+      try {
+        const result = await app.dataBase.queryAir.listAllAir(req, res)
 
-        listAllAir: async (req, res) => {
-            try {
-                const result = await app.dataBase.queryAir.listAllAir(req, res);
+        return res.status(200).send(result)
+      } catch (error) {
+        return res.status(401).send('Erro no listAllAir: ' + error)
+      }
+    },
 
-                return res.status(200).send(result);
-            } catch (error) {
-                return res.status(401).send('Erro no listAllAir: ' + error);
-            }
-        },
+    listNotActiveAir: async (req, res) => {
+      try {
+        const result = await app.dataBase.queryAir.listNotActiveAir(req, res)
 
-        listNotActiveAir: async (req, res) => {
-            try {
-                const result = await app.dataBase.queryAir.listNotActiveAir(req, res);
+        return res.status(200).send(result)
+      } catch (error) {
+        return res.status(401).send('Erro no listNotActiveAir: ' + error)
+      }
+    },
 
-                return res.status(200).send(result);
-            } catch (error) {
-                return res.status(401).send('Erro no listNotActiveAir: ' + error);
-            }
-        },
+    createAir: async (req, res) => {
+      try {
+        const result = await app.dataBase.queryAir.createAir(req, res)
 
-        createAir: async (req, res) => {
-            try {
-                const result = await app.dataBase.queryAir.createAir(req, res);
+        return res.status(200).send(result)
+      } catch (error) {
+        return res.status(401).send('Erro no cretaeAir: ' + error)
+      }
+    },
 
-                return res.status(200).send(result);
-            } catch (error) {
-                return res.status(401).send('Erro no cretaeAir: ' + error);
-            }
-        },
+    updateAir: async (req, res) => {
+      try {
+        const result = await app.dataBase.queryAir.updateAir(req, res)
 
-        updateAir: async (req, res) => {
-            console.log("Chrgou")
-            try {
-                const result = await app.dataBase.queryAir.updateAir(req, res);
-                
-                return res.status(200).send(result);
-            } catch (error) {
-                return res.status(401).send('Erro no updateAir: ' + error);
-            }
-        },
+        return res.status(200).send(result)
+      } catch (error) {
+        return res.status(401).send('Erro no updateAir: ' + error)
+      }
+    },
 
-        deleteAir: async (req, res) => {
-            try {
-                const result = await app.dataBase.queryAir.deleteAir(req, res);
+    deleteAir: async (req, res) => {
+      try {
+        const result = await app.dataBase.queryAir.deleteAir(req, res)
 
-                return res.status(200).send(result);
-            } catch (error) {
-                return res.status(401).send('Erro no deleteAir: ' + error);    
-            }
-        }
+        return res.status(200).send(result)
+      } catch (error) {
+        return res.status(401).send('Erro no deleteAir: ' + error)
+      }
     }
-    return airController;
- }
+  }
+  return airController
+}
