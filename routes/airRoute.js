@@ -8,4 +8,5 @@ module.exports = app => {
   app.post('/createAir', airController.createAir)
   app.post('/updateAir', airController.updateAir)
   app.delete('/deleteAir/:id_air', airController.deleteAir)
+  app.get('/currentAirData/:fk_id_air', airController.currentAirData)
 }

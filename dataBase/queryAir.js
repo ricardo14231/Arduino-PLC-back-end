@@ -104,4 +104,18 @@ function deleteAir (req, res) {
   })
 }
 
-module.exports = { listUnallocatedActiveAir, listAllocatedAirByIdPavilion, listAllAir, listNotActiveAir, createAir, updateAir, deleteAir }
+function currentAirData (req, res) {
+  return new Promise((resolve, reject) => {
+    dataBase.connection
+      .query(
+        'SELECT id_air, current_temperature_air, state_cool_air, state_fan_air ' +
+        'FROM tb_air ' +
+        'WHERE active_air = 1 AND id_air = ' + req.params.fk_id_air + '',
+        (error, result, fields) => {
+          if (error) { reject(error) }
+          resolve(result)
+        })
+  })
+}
+
+module.exports = { listUnallocatedActiveAir, listAllocatedAirByIdPavilion, listAllAir, listNotActiveAir, createAir, updateAir, deleteAir, currentAirData }

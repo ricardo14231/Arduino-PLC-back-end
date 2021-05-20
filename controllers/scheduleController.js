@@ -8,6 +8,42 @@ module.exports = app => {
       } catch (error) {
         return res.status(401).send('Erro no list schedule: ' + error)
       }
+    },
+    getIdScheduleRoom: async (req, res) => {
+      try {
+        const result = await app.dataBase.querySchedule.getIdScheduleRoom(req, res)
+
+        return res.status(200).send(result)
+      } catch (error) {
+        return res.status(401).send('Erro no list schedule: ' + error)
+      }
+    },
+    createSchedule: async (req, res) => {
+      try {
+        const result = await app.dataBase.querySchedule.createSchedule(req, res)
+
+        return res.status(201).send(result)
+      } catch (error) {
+        return res.status(401).send('Erro no createSchedule: ' + error)
+      }
+    },
+    updateAllSchedule: async (req, res) => {
+      try {
+        const result = await app.dataBase.querySchedule.updateAllSchedule(req, res)
+
+        return res.status(200).send(result)
+      } catch (error) {
+        return res.status(401).send('Erro no updateAllSchedule: ' + error)
+      }
+    },
+    updateSchedule: async (req, res) => {
+      try {
+        const result = await app.dataBase.querySchedule.updateSchedule(req, res)
+
+        return res.status(200).send(result)
+      } catch (error) {
+        return res.status(401).send('Erro no updateSchedule: ' + error)
+      }
     }
     /*
         readRoomById: async (req, res) => {
@@ -28,26 +64,6 @@ module.exports = app => {
 
             } catch (error) {
                 return res.status(401).send("Erro no readRoomByIdPavilion: " + error);
-            }
-        },
-        createRoom: async (req, res) => {
-            try {
-                const result = await app.dataBase.queryRoom.createRoom(req, res);
-
-                return res.status(201).send(result);
-
-            } catch (error) {
-                return res.status(401).send("Erro no createRoom: " + error);
-            }
-        },
-        updateRoom: async (req, res) => {
-            try {
-                const result = await app.dataBase.queryRoom.updateRoom(req, res);
-
-                return res.status(200).send(result);
-
-            } catch (error) {
-                return res.status(401).send("Erro no updateRoom: " + error);
             }
         },
         deleteRoom: async (req, res) => {

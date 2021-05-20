@@ -68,6 +68,16 @@ module.exports = app => {
       } catch (error) {
         return res.status(401).send('Erro no deleteAir: ' + error)
       }
+    },
+
+    currentAirData: async (req, res) => {
+      try {
+        const result = await app.dataBase.queryAir.currentAirData(req, res)
+
+        return res.status(200).send(result)
+      } catch (error) {
+        return res.status(401).send('Erro no currentAirData: ' + error)
+      }
     }
   }
   return airController
